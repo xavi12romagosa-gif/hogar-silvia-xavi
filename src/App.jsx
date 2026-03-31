@@ -26,7 +26,7 @@ const CAT_ICON = {
   Ropa:"👕", Balcón:"🌿", Ventanas:"🪟", Otro:"📦"
 };
 
-function generateSemanas(count = 20) {
+function generateSemanas(count = 80) {
   const semanas = [];
   let base = new Date(2025, 1, 6);
   for (let i = 0; i < count; i++) {
@@ -37,7 +37,7 @@ function generateSemanas(count = 20) {
   }
   return semanas;
 }
-const ALL_SEMANAS = generateSemanas(20);
+const ALL_SEMANAS = generateSemanas(80);
 
 function buildSemanaTaskIds(semanaLabel, semanaIdx) {
   const tasks = [];
