@@ -150,6 +150,7 @@ export default function App() {
   };
 
   const deleteExtra = async (id) => { await deleteDoc(doc(db, "extras", id)); };
+  const swapPerson = async (taskId, currentPerson) => {if (currentPerson === "Ambos") return;const newPerson = currentPerson === "Silvia" ? "Xavi" : "Silvia";await setDoc(doc(db, "tasks", taskId), { person: newPerson }, { merge: true });};
 
   const semTasks = allSemTasks.filter(t =>
     !filterPerson || t.person === filterPerson || t.person === "Ambos"
@@ -262,7 +263,7 @@ export default function App() {
                   <div key={t.id} style={{background:"white",borderRadius:16,padding:"13px 14px",marginBottom:8,display:"flex",alignItems:"center",gap:12,boxShadow:"0 1px 8px #0000000a",border:`1.5px solid ${t.done?"#e2e8f0":ps.accent+"28"}`,opacity:t.done?0.55:1,transition:"all 0.2s"}}>
                     <button onClick={() => toggle(t.id, t.done)} style={{width:30,height:30,borderRadius:9,flexShrink:0,background:t.done?"#22c55e":"white",border:`2.5px solid ${t.done?"#22c55e":"#d1d5db"}`,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",color:"white",fontSize:15,transition:"all 0.2s"}}>{t.done?"✓":""}</button>
                     <div style={{flex:1}}><div style={{fontWeight:700,color:"#0f172a",fontSize:14,textDecoration:t.done?"line-through":"none"}}>{t.title}</div></div>
-                    <span style={{background:ps.bg,color:ps.accent,borderRadius:10,padding:"3px 11px",fontSize:12,fontWeight:800,flexShrink:0}}>{ps.emoji} {t.person}</span>
+                    <span onClick={() => swapPerson(t.id, t.person)} style={{background:ps.bg,color:ps.accent,borderRadius:10,padding:"3px 11px",fontSize:12,fontWeight:800,flexShrink:0,cursor:"pointer"}}>{ps.emoji} {t.person}</span>
                     {t.id.startsWith("custom-") && <button onClick={() => deleteCustomTask(t.id)} style={{background:"none",border:"none",color:"#cbd5e1",fontSize:13,cursor:"pointer",padding:2,flexShrink:0}}>✕</button>}
                   </div>
                 );
