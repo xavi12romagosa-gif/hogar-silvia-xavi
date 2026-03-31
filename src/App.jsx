@@ -91,10 +91,11 @@ export default function App() {
 
   const baseTasks = buildSemanaTaskIds(semana, semIdx);
   const semCustom = customTasks.filter(t => t.semana === semana);
-  const allSemTasks = [...baseTasks, ...semCustom].map(t => ({
-    ...t,
-    done: dbTasks[t.id]?.done ?? false
-  }));
+ const allSemTasks = [...baseTasks, ...semCustom].map(t => ({
+  ...t,
+  done: dbTasks[t.id]?.done ?? false,
+  person: dbTasks[t.id]?.person ?? t.person
+}));
 
   useEffect(() => {
     setLoading(true);
