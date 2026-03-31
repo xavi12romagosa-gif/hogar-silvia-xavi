@@ -28,7 +28,7 @@ const CAT_ICON = {
 
 function generateSemanas(count = 80) {
   const semanas = [];
-  let base = new Date(2025, 1, 6);
+  let base = new Date(2026, 2, 6);
   for (let i = 0; i < count; i++) {
     const d = String(base.getDate()).padStart(2,"0");
     const m = String(base.getMonth()+1).padStart(2,"0");
