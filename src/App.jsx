@@ -32,7 +32,7 @@ function generateSemanas(count = 20) {
   for (let i = 0; i < count; i++) {
     const d = String(base.getDate()).padStart(2,"0");
     const m = String(base.getMonth()+1).padStart(2,"0");
-    semanas.push({ label: `${d}/${m}`, date: new Date(base), idx: i });
+   semanas.push({ label: `${d}-${m}`, date: new Date(base), idx: i });
     base = new Date(base.getTime() + 7*24*3600*1000);
   }
   return semanas;
